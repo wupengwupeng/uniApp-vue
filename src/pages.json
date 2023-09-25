@@ -1,16 +1,57 @@
 {
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index",
+			"id":"/",
+			"style": {
+				"navigationStyle": "custom",
+				"titleNView": false
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
 		}
+		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#666",
+		"selectedColor": "#1890FF",
+		"backgroundColor": "#ffffff",
+		"fontSize": "12px",
+		"iconWidth": "20px",
+		"spacing": "5px",
+		"height": "49px",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"text": "首页",
+				"iconPath": "static/img/index.png",
+				"selectedIconPath": "static/img/index-light.png"
+			},
+			{
+				"pagePath":"pages/index/index",
+				"text":"运维",
+				"iconPath":"static/img/task.png",
+				"selectedIconPath":"static/img/task-light.png"
+			}
+			
+		]
 	}
 }

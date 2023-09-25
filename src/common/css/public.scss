@@ -1,0 +1,142 @@
+ 
+ //  * scss  变量及方法封装
+
+@import "../../uni.scss";
+
+
+@mixin font($font: 30, $lh: 1) {
+	font-size: $font;
+	@if $lh != 1 {
+		line-height: $lh;
+	}
+}
+
+// 设置宽高
+@mixin size($width, $height: auto, $lh: 1){
+    width: $width;
+    height: $height;
+	@if $lh != 1 {
+		line-height: $lh;
+	}
+}
+
+@mixin verticalsize ($height, $lh: 1) {
+	height: $height;
+	@if $lh != 1 {
+		line-height: $lh;
+	}
+}
+
+// 设置颜色
+@mixin color($color, $hover: $color) {
+	color: $color;
+	@if length($color) >= 2 {
+		&:hover {
+			color: $hover;
+		}
+	}
+}
+
+@mixin radius($radius) {
+	border-radius: $radius;
+}
+
+// 边框
+@mixin border($direction: '', $radius: 0, $color: $uni-border-color) {
+	@if $direction != '' {
+		$type: type-of($direction) == String;
+		@if $type {
+			border-#{$direction}: 1px solid $color;
+		} @else {
+			@each $direc in $direction {
+				border-#{$direc}: 1px solid $color;
+			}
+		}
+	} @else {
+		border: 1px solid $color;
+	}
+	
+	@if $radius > 0 {
+		@include radius($radius);
+	}
+	
+}
+
+@mixin padding($direction: '', $padd: 0) {
+	@if $direction != '' {
+		$type: type-of($direction) == String;
+		@if $type {
+			padding-#{$direction}: $padd;
+		} @else {
+			@each $direc in $direction {
+				padding-#{$direc}: $padd;
+			}
+		}
+	} @else {
+		padding: $padd;
+	}
+}
+@mixin margin($direction: '', $marg: 0) {
+	@if $direction != '' {
+		$type: type-of($direction) == String;
+		@if $type {
+			padding-#{$direction}: $marg;
+		} @else {
+			@each $direc in $direction {
+				padding-#{$direc}: $marg;
+			}
+		}
+	} @else {
+		padding: $marg;
+	}
+}
+
+
+
+// 边框大小
+@mixin border-width($width: 1px) {
+	border-width: $width;
+}
+
+// 边框颜色
+@mixin border-color($color: #E6E6E6) {
+	border-color: $color;
+}
+
+// 左右对齐
+@mixin align($align: center) {
+	text-align: $align;
+}
+
+// 隐藏
+@mixin overflow($flow: hidden) {
+	overflow: $flow;
+}
+
+// 超出隐藏
+@mixin ellipsis($rowCount: 1) { 
+	@if $rowCount <=1 { 
+		overflow: hidden; 
+		text-overflow: ellipsis; 
+		white-space: nowrap; 
+	} @else { 
+		min-width: 0; 
+		overflow: hidden; 
+		text-overflow: ellipsis; 
+		display: -webkit-box; 
+		-webkit-line-clamp: $rowCount; 
+		-webkit-box-orient: vertical; 
+		} 
+}
+
+// 垂直居中
+@mixin vertical {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	& .middle {
+		display: inline-block;
+	}
+}
+

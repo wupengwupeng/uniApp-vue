@@ -1,0 +1,290 @@
+
+//  * 本文件主要用于重置默认样式
+//  * 以及设置项目常用样式
+@import "./public.scss";
+@import "./variables.scss";
+@import "./utils.scss";
+
+// 重置标签的默认边距及盒子模型， 有用其他标签的往后叠加 
+
+page, view, text, icon, button, swiper, input, image, map, navigator {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	box-sizing: border-box;
+}
+
+image { 
+	width: auto;
+	height: auto;
+}
+// border-radius
+.bor12{
+	border-radius: 12rpx;
+}
+
+// 背景颜色
+.whiteBg{
+	background-color: #FFFFFF;
+}
+
+// 文本颜色
+.text-primary {
+	@include color($uni-color-primary);
+}
+.text-success {
+	@include color($uni-color-success);
+}
+.text-warn {
+	@include color($uni-color-warning);
+}
+.text-error {
+	@include color($uni-color-error);
+}
+.text-dark {
+	@include color($uni-text-color);
+}
+.text-gray {
+	@include color($uni-text-color-placeholder);
+}
+.text-graylight {
+	@include color($uni-text-color-grey);
+}
+
+
+
+// 文本对齐方式
+@mixin text-aligin {
+	.text-center {
+		@include align;
+	}
+	.text-left {
+		@include align(left);
+	}
+	.text-right {
+		@include align(right);
+	}
+}
+@include text-aligin;
+
+@mixin font-size($num, $i: 1, $font: ($num * 2))  {
+	@debug  $font;
+	.font-#{$font} {
+		font-size: $font * 1rpx;
+	}	
+}
+
+// 字体  28   30   32   34  36
+@mixin set-size {
+	$i: 0;
+	$num: 14;
+	@while $i < 5 {
+		@include font-size($num + $i, $i + 1)
+		$i: $i + 1; 
+	}
+}
+@include set-size;
+.text-inline {
+	display: inline;
+}
+
+.text-inline-block {
+	display: inline-block;
+}
+
+.text-block {
+	display: inline-block;
+}
+
+// 边距
+@mixin margin($i: 1, $margin: 5 * $i) {
+	$marginpx: $margin * 1rpx;
+	.padding-#{$margin} {
+		@include padding('', $marginpx)
+	}
+	.padding-l-#{$margin} {
+		padding-left: $marginpx;
+	}
+	.padding-r-#{$margin} {
+		padding-right: $marginpx;
+	}
+	.padding-t-#{$margin} {
+		padding-top: $marginpx;
+	}
+	.padding-b-#{$margin} {
+		padding-bottom: $marginpx;
+	}
+	.padding-lr-#{$margin} {
+		padding: 0 $marginpx;
+	}
+	.padding-tb-#{$margin} {
+		padding: $marginpx 0;
+	}
+	.margin-#{$margin} {
+		margin: $marginpx;
+	}
+	.margin-l-#{$margin} {
+		margin-left: $marginpx;
+	}
+	.margin-r-#{$margin} {
+		margin-right: $marginpx;
+	}
+	.margin-t-#{$margin} {
+		margin-top: $marginpx;
+	}
+	.margin-b-#{$margin} {
+		margin-bottom: $marginpx;
+	}
+	.margin-tb-#{$margin} {
+		margin: $marginpx 0;
+	}
+	.margin-lr-#{$margin} {
+		margin: 0 $marginpx;
+	}
+}
+@mixin set-margin {
+	$i: 1;
+	@while $i < 8 {
+		@include margin($i);
+		$i: $i + 1;
+	}
+}
+@include set-margin;
+
+
+// 浮动及清楚浮动
+@mixin set-float {
+	.fl {
+		float: left;
+	}
+	.fr {
+		float: right;
+	}
+	.clearfix {
+		clear: both;
+		zoom: 1;
+		&:after, &:before {
+			clear: both;
+			display: block;
+			content: '';
+		}
+	}
+}
+@include set-float;
+
+// 超出隐藏
+.text-overflow {
+	@include overflow;
+}
+
+// 超出一排三个点隐藏
+.text-overflow{
+	@include ellipsis;
+}
+
+// 文本超出多排篇隐藏
+.text-ellipsis {
+	@include ellipsis(2);
+}
+
+// 底部边框
+.border-bottom {
+	@include border(bottom);
+}
+
+// 页面背景色
+page {
+	background-color: #f5f5f5;
+}
+
+// 页面内边距
+.content-box{
+	padding: 24rpx;
+	width: 100%;
+	height: 100%;
+}
+
+
+// 重置uni默认样式
+
+// 重置按钮
+uni-button {
+	@include verticalsize(88rpx, 88rpx);
+	@include radius(12rpx);
+	@include font(32rpx);
+}
+
+uni-button[size=mini] {
+	@include size(320rpx, 80rpx, 80rpx);
+	@include radius(12rpx);
+}
+
+uni-button[type=primary] {
+    background-color: $uni-color-primary;
+}
+
+uni-button[type=default] {
+  background-color: #E8E9ED;
+	color: $uni-text-color-grey;
+}
+
+uni-button[type=default]:after {
+	border-color: #E8E9ED;
+}
+// 整体样式
+.uni-body {
+	background-color: $main-container-bg-color;
+}
+uni-page-body {
+	color: $mainTextColor;
+}
+@mixin gap($i:1,$gap: 5 * $i){
+	$gappx: $gap * 1rpx;
+	.gap-#{$gap}{
+		gap: $gappx;
+	}
+	.gap-x-#{$gap}{
+		column-gap: $gappx;
+	}
+	.gap-y-#{$gap}{
+			row-gap: $gappx;
+	}
+}
+@mixin set-gap{
+	$i: 1;
+	@while $i < 8 {
+		@include gap($i);
+		$i: $i + 1;
+	}
+}
+@include set-gap;
+
+
+// 部分tailwindcss
+.flex{
+	display: flex;
+}
+.flex-1{
+	flex: 1 1 0%;
+}
+.flex-col{
+	flex-direction: column;
+}
+.flex-row{
+	flex-direction: row;
+}
+.flex-wrap{
+	flex-wrap: wrap;
+}
+.items-center{
+	align-items: center;
+}
+.items-start{
+	align-items: flex-start;
+}
+.items-end{
+	align-items: flex-end;
+}
+.justify-center{
+	justify-content: center;
+}
